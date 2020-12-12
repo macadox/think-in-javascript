@@ -1,0 +1,6 @@
+{
+  "siteOffline": false,
+  "passwordResetExpiry": 60,
+  "categories": ["Learn Node", "Mastering React"],
+  "tags": ["JavaScript", "CSS", "React", "Express", "MongoDB"]
+}

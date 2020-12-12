@@ -1,0 +1,16 @@
+extends base.pug
+
+include mixins/_loginForm
+
+block content
+    .inner
+        .form-wrap
+            +loginForm('Login to your account')
+        .form-wrap
+            form.form(action="/login" method="POST")
+                h2.form__title Forgot password?
+                .form__field
+                    label.form__label(for="email") Email Address
+                    input.form__input(type="email" id="email" name="email" required)
+                .form__field
+                    input.form__submit(type="submit" value="Send reset instructions")

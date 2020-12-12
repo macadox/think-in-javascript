@@ -1,0 +1,6 @@
+{
+    "title": "Welcome to my blog!",
+    "content": "Test content",
+    "tags": ["Test", "JavaScript", "NodeJS"],
+    "category": "Build your own API with Node!"
+}

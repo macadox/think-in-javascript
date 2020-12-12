@@ -1,0 +1,27 @@
+header
+    .nav-wrapper
+        nav
+            .site-branding
+                .logo
+                    h1.logo-title Think in JS
+                    h2.logo-subtitle Practical solutions to JavaScript problems
+                .socials
+                    a.social__button(href="#"): i.far.fa-envelope
+                    a.social__button.social__button--facebook(href="#"): i.fab.fa-facebook-f
+                    a.social__button(href="#"): i.fab.fa-instagram
+            ul.menu
+                li.menu__element: a.menu__link(href="/") Home
+                li.menu__element: a.menu__link(href="/") About Me
+                li.menu__element: a.menu__link(href="/tags") Tags
+                li.menu__element: a.menu__link(href="/categories") Categories
+                li.menu__element: a.menu__link(href="/") Contact Me
+                if (user)
+                    if (user.permissionPower >= 15)
+                        li.menu__element.menu__element--right: a.menu__link(href="/admin") Admin
+                    li.menu__element.menu__element--right: a.menu__link(href="/me") Me
+                    li.menu__element.menu__element--right: a.menu__link(href="/logout") Logout
+                else
+                    li.menu__element.menu__element--right: a.menu__link(href="/login") Login
+                    li.menu__element.menu__element--right: a.menu__link(href="/signup") Sign Up
+            button.burger
+                .burger__line
