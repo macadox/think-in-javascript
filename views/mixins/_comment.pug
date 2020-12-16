@@ -1,0 +1,6 @@
+mixin comment (comment)
+    .comment
+        img.comment__avatar(src=`/img/users/${comment.author.avatar || 'default.png'}` , alt=`${comment.author.name}`)
+        p.comment__author= comment.author.name
+        p.comment__date= `${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(comment.created)}`
+        p.comment__content= comment.comment

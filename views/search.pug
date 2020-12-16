@@ -1,0 +1,14 @@
+extends base
+
+include mixins/_aside
+include mixins/_postCard
+
+block content
+    .inner
+        .main-wrap
+            .container--left
+                .block
+                    h2.block__title!= `<span class="num-class">${posts.length}</span> Search results for "${query}":` 
+                each post in posts
+                    +postCard(post)
+            +aside(config)

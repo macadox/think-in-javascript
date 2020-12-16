@@ -1,6 +1,9 @@
 const express = require('express');
 const viewsController = require('../controllers/viewsController');
+const commentController = require('../controllers/commentController');
 const userController = require('../controllers/userController');
+const postController = require('../controllers/postController');
+const sanitizationController = require('../controllers/sanitizationController');
 const authController = require('../controllers/authController');
 const { tryCatch } = require('../handlers/errorHandler');
 // const viewsController = require('./../controllers/viewsController');
@@ -13,12 +16,12 @@ router
   .get(userController.signUpForm)
   .post(
     [
-      userController.sanitizeEmail,
-      userController.sanitizeName,
-      userController.sanitizePassword,
-      userController.confirmPassword,
+      sanitizationController.sanitizeEmail,
+      sanitizationController.sanitizeName,
+      sanitizationController.sanitizePassword,
+      sanitizationController.confirmPassword,
     ],
-    userController.flashErrors,
+    sanitizationController.flashErrors('signup', 'Sign Up'),
     tryCatch(userController.signup),
     authController.login
   );
@@ -28,16 +31,40 @@ router.get('/logout', authController.logout);
 router.get(
   '/admin',
   authController.isLoggedIn,
-  authController.hasPermissionPower(16),
+  authController.hasPermissionPower(15),
   (req, res) => {
-    res.send('This is admin panel, its open');
+    res.send('You have enough permission to access admin panel');
   }
 );
 
-router.route('/').get((req, res) => {
-  res.render('posts', {
-    title: 'Test title',
-  });
-});
+router.route('/').get(viewsController.getRecent, viewsController.getHomepage);
+router
+  .route('/post/:slug')
+  .get(viewsController.getRecent, tryCatch(viewsController.getPostBySlug));
+
+router
+  .route('/post/:slug/comments')
+  .post(
+    authController.isLoggedIn,
+    sanitizationController.sanitizeComment,
+    sanitizationController.flashCommentErrors(`post`),
+    commentController.addComment
+  );
+
+router
+  .route('/tags')
+  .get(viewsController.getRecent, tryCatch(viewsController.getPostsByTag));
+router
+  .route('/tags/:tag')
+  .get(viewsController.getRecent, tryCatch(viewsController.getPostsByTag));
+
+router
+  .route('/categories')
+  .get(viewsController.getRecent, tryCatch(viewsController.getCategories));
+router
+  .route('/categories/:cat')
+  .get(viewsController.getRecent, tryCatch(viewsController.getPostsByCategory));
+
+router.route('/search').get(viewsController.getRecent, tryCatch(postController.searchPosts))
 
 module.exports = router;

@@ -1,0 +1,15 @@
+extends base
+
+include mixins/_aside
+
+block content
+    .inner
+        .main-wrap
+            .container--left
+                .block
+                    h2.block__title Available series:
+                    each c in categories
+                        a.category.category--green(href=`/categories/${c.slug}`, class=(c.name === title ? 'tag--active' : ''))
+                            span.tag__name= c.name
+                            span.tag__count= c.count
+            +aside(config)

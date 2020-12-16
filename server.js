@@ -18,6 +18,7 @@ mongoose
   require('./models/Post');
   require('./models/Config');
   require('./models/User');
+  require('./models/Comment');
   
   require('./handlers/passport.js');
 

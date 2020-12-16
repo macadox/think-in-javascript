@@ -1,0 +1,4 @@
+mixin commentForm (post)
+    form.commenter(action=`/post/${post.slug}/comments` method="POST")
+        textarea#comment.commenter__textarea(name="comment" placeholder="Please, leave a comment or review..." aria-label="comment" required)
+        input.btn.btn--primary(type="submit" value="Post a comment")

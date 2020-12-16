@@ -1,0 +1,18 @@
+extends base
+
+include mixins/_postCard
+include mixins/_aside
+
+block content
+    .inner
+        .main-wrap
+            .container--left
+                .block
+                    .tags
+                        each t in tags
+                            a.tag(href=`/tags/${t.slug}`, class=(t.name === title ? 'tag--active' : ''))
+                                span.tag__name= t.name
+                                span.tag__count= t.count
+                each post in posts
+                    +postCard(post)
+            +aside(config)

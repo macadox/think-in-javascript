@@ -1,0 +1,15 @@
+mixin postCard (post = {})
+    .post.block
+        .post__header
+            p.category.category--green= post.category
+            h3.post__title= post.title
+            p.post__details= `Posted on ${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(post.created)} by ${post.author && post.author.name}`
+        .post__content
+            img.post__photo(src=`/img/pages/${post.photo}`, alt=`Placeholder for alt text`)
+            p.post__description= post.description
+        .post__footer
+            a.btn.btn--primary(href=`/post/${post.slug}`) Continue reading ➡
+            .tags
+                each t in post.tags
+                    a.tag(href=`/tags/${t.toLowerCase()}`)= t
+            a.post__comment-count(href=`/post/${post.slug}/#comments`)!= `${post.comments.length > 0 ? `<span class="num-font">${post.comments.length}</span> Comment${post.comments.length > 1 ? 's' : ''}` : 'Be the first one to comment'}`

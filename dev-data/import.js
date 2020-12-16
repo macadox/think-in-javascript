@@ -26,7 +26,7 @@ const importData = async () => {
   try {
     await Config.create(JSON.parse(config));
     await Post.create(JSON.parse(posts));
-    console.log('Data successfully loaded');
+    console.log(`Data successfully loaded! At ${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(Date.now())}`);
     process.exit();
   } catch (err) {
     console.log(err);
@@ -37,7 +37,7 @@ const deleteData = async () => {
   try {
     await Config.deleteMany({});
     await Post.deleteMany({});
-    console.log('Data successfully deleted!');
+    console.log(`Data successfully deleted! At ${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(Date.now())}`);
     process.exit();
   } catch (err) {
     console.log(err);

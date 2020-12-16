@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slug = require('slugs');
 
 const configSchema = mongoose.Schema({
   _immutable: {
@@ -6,7 +7,6 @@ const configSchema = mongoose.Schema({
     required: true,
     default: true,
     unique: true,
-    immutable: true,
   },
   siteOffline: Boolean,
   email: {
@@ -16,8 +16,38 @@ const configSchema = mongoose.Schema({
     smtpPassword: String,
   },
   passwordResetExpiry: Number,
-  categories: [String],
-  tags: [String],
+  categories: [
+    {
+      name: String,
+      slug: String,
+    },
+  ],
+  tags: [
+    {
+      name: String,
+      slug: String,
+    },
+  ],
+});
+
+configSchema.pre('save', async function (next) {
+  if (!this.isModified('categories')) return next();
+  
+  this.categories.forEach(category => {
+    category.slug = slug(category.name);
+  })
+
+  next();
+});
+
+configSchema.pre('save', async function (next) {
+  if (!this.isModified('tags')) return next();
+  
+  this.tags.forEach(tag => {
+    tag.slug = slug(tag.name);
+  })
+
+  next();
 });
 
 const Config = mongoose.model('Config', configSchema);

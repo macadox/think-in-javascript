@@ -1,6 +1,21 @@
 {
   "siteOffline": false,
   "passwordResetExpiry": 60,
-  "categories": ["Learn Node", "Mastering React"],
-  "tags": ["JavaScript", "CSS", "React", "Express", "MongoDB"]
+  "categories": [
+    { "_id": "5fd8a1a9a7264d0b108ed4e2", "name": "Build your own API with Node!" },
+    { "_id": "5fd8a1a9a7264d0b108ed4e3", "name": "Mastering React" },
+    {
+      "_id": "5fd8a1a9a7264d0b108ed4e4",
+      "name": "Algorithms & Data Structures"
+    }
+  ],
+  "tags": [
+    { "_id": "5fd8a1a9a7264d0b108ed4e5", "name": "JavaScript" },
+    { "_id": "5fd8a1a9a7264d0b108ed4e6", "name": "CSS" },
+    { "_id": "5fd8a1a9a7264d0b108ed4e7", "name": "React" },
+    { "_id": "5fd8a1a9a7264d0b108ed4e8", "name": "Express" },
+    { "_id": "5fd8a1a9a7264d0b108ed4e9", "name": "MongoDB" },
+    { "_id": "5fd8a1a9a7264d0b108ed4ea", "name": "NodeJS" },
+    { "_id": "5fd8a1a9a7264d0b108ed4eb", "name": "Pug" }
+  ]
 }

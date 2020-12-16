@@ -23,8 +23,9 @@ const userSchema = mongoose.Schema({
   },
   permissionPower: {
     type: Number,
-    default: 10
-  }
+    default: 10,
+  },
+  avatar: String,
 });
 
 // userSchema.plugin(mongodbErrorHandler);

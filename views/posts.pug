@@ -1,11 +1,18 @@
 extends base.pug
 
+include mixins/_postCard
+include mixins/_aside
+
 block content
     .inner
         section.hero
-            .hero__content.hero__content--main(style=`background-image: url('./../img/pages/hero.jpg');`)
+            .hero__content.hero__content--main(style=`background-image: url('/img/pages/hero.jpg');`)
                 .hero__layer(style=`background-color: rgba(255, 255, 255, 0.09)`)
                 .hero__text--main
                     h2.hero__title David Wood
                     h3.hero__subtitle I am a Developer
-
+        .main-wrap
+            section.posts.container--left
+                each post in posts
+                    +postCard(post)
+            +aside(config)

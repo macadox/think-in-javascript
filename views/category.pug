@@ -1,0 +1,15 @@
+extends base
+
+include mixins/_postCard
+include mixins/_aside
+
+block content
+    .inner
+        .main-wrap
+            .container--left
+                .block
+                    h2.form__title!= `<span class="num-font">${posts.length}</span> results found for ${title}`
+                    a.btn.btn--secondary(href='/categories') 🠐 Back
+                each post in posts
+                    +postCard(post)
+            +aside(config)

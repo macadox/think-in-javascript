@@ -1,0 +1,9 @@
+extends base
+
+block content
+    .inner
+        .error
+            .error__title
+                h2.heading-secondary.heading-secondary--error Something went wrong!
+            p.error__message= err
+            p.error__stack= stack

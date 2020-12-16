@@ -1,0 +1,30 @@
+mixin aside(config = {})
+    aside.sidebar.clearfix
+        section.widget.widget--search
+            h4.widget__title Search posts
+            form.search-form#search(method="GET")
+                input(type="text" placeholder="Search..." name="search" aria-label="Type and submit to serch").form__input.form__input--search
+        section.widget.widget--recent-posts
+            h4.widget__title Recent posts
+            .recent-posts
+                each p in recentPosts
+                    .recent-post
+                        - const titleContent = p.title.split(' ').slice(0, 15).join(' ')
+                        a.recent-post__title(href=`/post/${p.slug}`)= titleContent
+                        p.recent-post__date= `${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(p.created)}`
+        section.widget.widget--recent-comments
+            h4.widget__title Recent comments
+            .recent-comments
+                each c in recentComments
+                    - const commentContent = c.comment.split(' ').slice(0, 10).join(' ')
+                    a.recent-comment(href=`/post/${c.post.slug}/#comments`)!= `${commentContent} <br> - <i class="recent-comment__author">${c.author.name}</i>`
+        section.widget.widget--tags
+            h4.widget__title Tags
+            .tags
+                each t in config.tags
+                    a.tag(href=`/tags/${t.slug}`)= t.name 
+        section.widget.widget--categories
+            h4.widget__title Categories
+            .widget__categories
+                each cat in config.categories
+                    a.widget__category(href=`/categories/${cat.slug}`)= cat.name

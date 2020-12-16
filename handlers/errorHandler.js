@@ -18,12 +18,19 @@ exports.AppError = class extends Error {
 };
 
 const sendErrorDev = (err, req, res) => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    error: err,
-    message: err.message,
-    stack: err.stack,
-  });
+
+  res.render('404', {
+    title: 'Something went wrong',
+    err,
+    stack: err.stack
+  })
+
+  // res.status(err.statusCode).json({
+  //   status: err.status,
+  //   error: err,
+  //   message: err.message,
+  //   stack: err.stack,
+  // });
 };
 
 const sendErrorProd = (err, req, res) => {
@@ -33,10 +40,15 @@ const sendErrorProd = (err, req, res) => {
       message: err.message,
     });
   }
-  res.status(500).json({
-    status: 'error',
-    message: 'Something went wrong',
-  });
+  // res.status(500).json({
+  //   status: 'error',
+  //   message: 'Something went wrong',
+  // });
+
+  res.render('404', {
+    title: 'Something went wrong',
+    err
+  })
 };
 
 exports.globalErrorHandler = (err, req, res, next) => {

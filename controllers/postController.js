@@ -64,3 +64,25 @@ exports.deletePost = async (req, res, next) => {
     data: null,
   });
 };
+
+exports.searchPosts = async (req, res, next) => {
+  const query = Post.find(
+    {
+      $text: {
+        $search: req.query.q,
+      },
+    },
+    {
+      score: { $meta: 'textScore' },
+    }
+  ).sort({
+    score: {$meta: 'textScore'}
+  }).populate('author comments');
+
+  const posts = await query
+  res.render('search', {
+    title: 'Search results for:',
+    posts,
+    query: req.query.q
+  })
+};

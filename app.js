@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 
 const viewRoutes = require('./routes');
-const postsRoutes = require('./routes/postRoutes');
+const apiRoutes = require('./routes/apiRoutes');
 const helpers = require('./helpers');
 const { globalErrorHandler, AppError } = require('./handlers/errorHandler');
 
@@ -49,13 +49,12 @@ app.use((req, res, next) => {
     res.locals.h = helpers
     res.locals.flashes = req.flash();
     res.locals.user= req.user || null;
-
     next()
 })
 
 // Routes
 app.use('/', viewRoutes);
-app.use('/api/v1/posts', postsRoutes);
+app.use('/api/v1/posts', apiRoutes);
 // app.use('/api/v1/tags')
 // app.use('/api/v1/admin')
 

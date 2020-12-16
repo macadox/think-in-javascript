@@ -1,0 +1,42 @@
+extends base
+
+include mixins/_aside
+include mixins/_comment
+include mixins/_commentForm
+
+append head 
+    link(rel="stylesheet", href="/lib/prism/prism.css")
+
+block content
+    .inner
+        section.hero
+            .hero__content(style=`background-image: url('/img/pages/${post.photo}');`)
+                .hero__layer(style=`background-color: rgba(255, 255, 255, 0.09)`)
+        .main-wrap
+            section.posts.container--left
+                //- pre= h.dump(post)
+                .post.block
+                    .post__header
+                        p.category.category--green= post.category
+                        h3.post__title= post.title
+                        p.post__details= `Posted on ${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(post.created)} by ${post.author && post.author.name}` 
+                    .post__content.post__content--post
+                        p.post__description.post__description--post= post.description
+                        div.post__text !{post.content}
+                    .post__footer
+                        a.btn.btn--secondary(href=`/`) 🠐 Back
+                        .tags
+                            each t in post.tags
+                                a.tag(href=`/tags/${t.toLowerCase()}`)= t
+                .comments-wrapper.block
+                    label.block__title(for="comment") Did you like the article? Please leave a comment below:
+                    if user
+                        +commentForm(post)
+                    if post.comments
+                        section.comments#comments
+                            each comment in post.comments
+                                +comment(comment)
+            +aside(config)
+
+append scripts
+    script(src="/lib/prism/prism.js")
