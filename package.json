@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
-    "start": "cross-env NODE_ENV=production server.js",
-    "start:dev": "nodemon server.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon index.js",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
     "watch:js": "parcel watch ./public/js/src/index.js --out-dir ./public/js/dist --out-file bundle.js",
     "data:import": "node ./dev-data/import.js --import",
     "data:delete": "node ./dev-data/import.js --delete"
