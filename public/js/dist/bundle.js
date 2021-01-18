@@ -1317,13 +1317,109 @@ var searchPosts = function searchPosts(e) {
 };
 
 exports.searchPosts = searchPosts;
-},{"dompurify":"../../../node_modules/dompurify/dist/purify.js"}],"index.js":[function(require,module,exports) {
+},{"dompurify":"../../../node_modules/dompurify/dist/purify.js"}],"typewriter.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Typewriter = /*#__PURE__*/function () {
+  function Typewriter(element, words, pause, speed) {
+    var _this = this;
+
+    _classCallCheck(this, Typewriter);
+
+    this.element = element;
+    this.words = words;
+    this.text = this.element.querySelector('.typewriter-word');
+    this.cursor = document.querySelector('.typewriter-cursor');
+    this.currentWord = 0;
+    this.currentLetter = 0;
+    this.pause = pause;
+    this.speed = speed;
+    this.isDeleting = false;
+    setInterval(function () {
+      _this.blink();
+    }, 500);
+  }
+
+  _createClass(Typewriter, [{
+    key: "type",
+    value: function type() {
+      var _this2 = this;
+
+      var txt;
+
+      if (this.isDeleting) {
+        this.currentLetter--;
+      } else {
+        this.currentLetter++;
+      }
+
+      txt = this.words[this.currentWord].slice(0, this.currentLetter);
+      this.text.textContent = txt;
+      var typeSpeed = this.speed;
+      if (this.isDeleting) typeSpeed = typeSpeed / 2; // When word is complete
+
+      if (!this.isDeleting && txt.length === this.words[this.currentWord].length) {
+        typeSpeed = this.pause;
+        this.isDeleting = true;
+      } else if (this.isDeleting && txt === '') {
+        this.isDeleting = false;
+        this.currentWord++;
+        if (this.currentWord >= this.words.length) this.currentWord = 0;
+        typeSpeed = this.pause / 3;
+      }
+
+      this.blink();
+      setTimeout(function () {
+        return _this2.type();
+      }, typeSpeed);
+    }
+  }, {
+    key: "blink",
+    value: function blink() {
+      // This instead of toggle, because then we can trigger blink when typing
+      if (this.cursor.classList.contains('active')) {
+        this.cursor.classList.remove('active');
+      } else {
+        this.cursor.classList.add('active');
+      }
+    }
+  }]);
+
+  return Typewriter;
+}();
+
+exports.default = Typewriter;
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _searchPosts = require("./files/searchPosts");
 
+var _typewriter = _interopRequireDefault(require("./typewriter"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var burger = document.querySelector('.burger');
 var searchForms = document.querySelectorAll('.search-form');
+var heroSubtitle = document.querySelector('.hero__subtitle');
+
+if (heroSubtitle) {
+  var words = ['Developer', 'Designer', 'Freelancer'];
+  var pause = 3000;
+  var speed = 150;
+  var typewriter = new _typewriter.default(heroSubtitle, words, pause, speed);
+  typewriter.type();
+}
 
 if (burger) {
   var menu = document.querySelector('.menu');
@@ -1338,7 +1434,7 @@ if (searchForms) {
     return form.addEventListener('submit', _searchPosts.searchPosts);
   });
 }
-},{"./files/searchPosts":"files/searchPosts.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./files/searchPosts":"files/searchPosts.js","./typewriter":"typewriter.js"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1366,7 +1462,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62392" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57935" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

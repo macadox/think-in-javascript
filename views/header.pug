@@ -10,18 +10,18 @@ header
                     a.social__button.social__button--facebook(href="#"): i.fab.fa-facebook-f
                     a.social__button(href="#"): i.fab.fa-instagram
             ul.menu
-                li.menu__element: a.menu__link(href="/") Home
+                li.menu__element(class=`${currentPath === '/' ? 'menu__element--active' : ''}`): a.menu__link(href="/") Home
                 li.menu__element: a.menu__link(href="/") About Me
-                li.menu__element: a.menu__link(href="/tags") Tags
-                li.menu__element: a.menu__link(href="/categories") Categories
+                li.menu__element(class=`${currentPath.startsWith('/tags') ? 'menu__element--active' : ''}`): a.menu__link(href="/tags") Tags
+                li.menu__element(class=`${currentPath.startsWith('/categories') ? 'menu__element--active' : ''}`): a.menu__link(href="/categories") Categories
                 li.menu__element: a.menu__link(href="/") Contact Me
                 if (user)
                     if (user.permissionPower >= 15)
-                        li.menu__element.menu__element--right: a.menu__link(href="/admin") Admin
-                    //- li.menu__element.menu__element--right: a.menu__link(href="/me") Me
+                        li.menu__element.menu__element--right(class=`${currentPath.startsWith('/admin') ? 'menu__element--active' : ''}`): a.menu__link(href="/admin") Admin
+                    //- li.menu__element.menu__element--right(class=`${currentPath.startsWith('/me') ? 'menu__element--active' : ''}`): a.menu__link(href="/me") Me
                     li.menu__element.menu__element--right: a.menu__link(href="/logout") Logout
                 else
-                    li.menu__element.menu__element--right: a.menu__link(href="/login") Login
-                    li.menu__element.menu__element--right: a.menu__link(href="/signup") Sign Up
+                    li.menu__element.menu__element--right(class=`${currentPath.startsWith('/login') ? 'menu__element--active' : ''}`): a.menu__link(href="/login") Login
+                    li.menu__element.menu__element--right(class=`${currentPath.startsWith('/signup') ? 'menu__element--active' : ''}`): a.menu__link(href="/signup") Sign Up
             button.burger
                 .burger__line
