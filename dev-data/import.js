@@ -3,7 +3,8 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const Config = require('./../models/Config');
 const Post = require('./../models/Post');
-// const Comment = require('./../models/Comment')
+const Comment = require('./../models/Comment');
+const User = require('./../models/User');
 
 dotenv.config({ path: './config.env' });
 
@@ -26,7 +27,16 @@ const importData = async () => {
   try {
     await Config.create(JSON.parse(config));
     await Post.create(JSON.parse(posts));
-    console.log(`Data successfully loaded! At ${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(Date.now())}`);
+    console.log(
+      `Data successfully loaded! At ${new Intl.DateTimeFormat('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false,
+      }).format(Date.now())}`
+    );
     process.exit();
   } catch (err) {
     console.log(err);
@@ -37,7 +47,18 @@ const deleteData = async () => {
   try {
     await Config.deleteMany({});
     await Post.deleteMany({});
-    console.log(`Data successfully deleted! At ${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(Date.now())}`);
+    await Comment.deleteMany({});
+    await User.deleteMany({});
+    console.log(
+      `Data successfully deleted! At ${new Intl.DateTimeFormat('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false,
+      }).format(Date.now())}`
+    );
     process.exit();
   } catch (err) {
     console.log(err);

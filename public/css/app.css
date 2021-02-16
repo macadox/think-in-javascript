@@ -819,6 +819,12 @@ nav {
   margin-bottom: 1em;
 }
 
+.form__subtitle {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
 .form__field + .form__field {
   margin-top: 2em;
 }
@@ -976,7 +982,8 @@ nav {
   padding-top: 2em;
 }
 
-.commenter__textarea {
+.commenter__textarea,
+.form__textarea {
   display: block;
   width: 100%;
   height: 120px;
@@ -989,16 +996,23 @@ nav {
   outline: none;
 }
 
-.commenter__textarea:invalid {
+.commenter__textarea:invalid,
+.form__textarea:invalid {
   box-shadow: none;
 }
 
-.commenter__textarea:focus:invalid {
+.commenter__textarea:focus:invalid,
+.form__textarea:focus:invalid {
   border-bottom: 2px solid red;
 }
 
-.commenter__textarea:focus:valid {
+.commenter__textarea:focus:valid,
+.form__textarea:focus:valid {
   border-bottom: 2px solid #87eaa8;
+}
+
+.commenter--no-user p {
+  font-size: 1.6rem;
 }
 
 .comments {

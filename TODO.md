@@ -1,6 +1,7 @@
 # Things to do:
 
 - add categories endpoint [x]
+- add marked library to process markdown posts [x]
 - Add more posts, so Categories and tags make sense [ ]
 - add /search endpoint (need to index post names, description, content) [x]
 - add option to comment [x]

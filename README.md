@@ -6,7 +6,7 @@ Think in JS is a blogging template, that allows the user to post blog posts and 
 Demo accessible at: https://think-in-js.herokuapp.com/
 
 ## Login Credentials
-In order to interact with posts, by adding comments, use the following credentials:
+In order to interact with posts by adding comments, use the following credentials:
 
 user: maciej@mokninski.com
 

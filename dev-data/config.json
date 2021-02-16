@@ -1,8 +1,18 @@
 {
   "siteOffline": false,
   "passwordResetExpiry": 60,
+  "email": {
+    "smptHostname": "smtp.mailtrap.io",
+    "smtpPort": 2525,
+    "smtpUsername": "9480d29179bb5d",
+    "smtpPassword": "b453b65e6c9d77",
+    "emailFrom": "okninski.mac@gmail.com"
+  },
   "categories": [
-    { "_id": "5fd8a1a9a7264d0b108ed4e2", "name": "Build your own API with Node!" },
+    {
+      "_id": "5fd8a1a9a7264d0b108ed4e2",
+      "name": "Build your own API with Node!"
+    },
     { "_id": "5fd8a1a9a7264d0b108ed4e3", "name": "Mastering React" },
     {
       "_id": "5fd8a1a9a7264d0b108ed4e4",
