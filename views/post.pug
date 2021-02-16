@@ -5,7 +5,6 @@ include mixins/_comment
 include mixins/_commentForm
 
 append head 
-    link(rel="stylesheet", href="/lib/prism/prism.css")
 
 block content
     .inner
@@ -22,7 +21,7 @@ block content
                         p.post__details= `Posted on ${new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false}).format(post.created)} by ${post.author && post.author.name}` 
                     .post__content.post__content--post
                         p.post__description.post__description--post= post.description
-                        div.post__text !{post.content}
+                        div.post__text !{marked(post.content)}
                     .post__footer
                         a.btn.btn--secondary(href=`/`) 🠐 Back
                         .tags
@@ -32,6 +31,11 @@ block content
                     label.block__title(for="comment") Did you like the article? Please leave a comment below:
                     if user
                         +commentForm(post)
+                    else 
+                        .commenter--no-user
+                            p You are not logged in. Click the button below to redirect to login page :)
+                            a(href="/login").btn.btn--secondary Login
+
                     if post.comments
                         section.comments#comments
                             each comment in post.comments
@@ -39,4 +43,3 @@ block content
             +aside(config)
 
 append scripts
-    script(src="/lib/prism/prism.js")

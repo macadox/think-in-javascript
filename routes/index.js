@@ -27,6 +27,18 @@ router
   );
 
 router.get('/logout', authController.logout);
+router.post('/forgot', tryCatch(authController.forgotPassword));
+router
+  .route('/reset/:token')
+  .get(userController.passwordResetForm)
+  .post(
+    [
+      sanitizationController.sanitizePassword,
+      sanitizationController.confirmPassword,
+    ],
+    sanitizationController.flashErrors('passwordReset', 'Password Reset'),
+    tryCatch(authController.resetPassword)
+  );
 
 router.get(
   '/admin',
@@ -36,6 +48,14 @@ router.get(
     res.send('You have enough permission to access admin panel');
   }
 );
+
+router
+  .route('/contact')
+  .get(viewsController.getContact)
+  .post(
+    [sanitizationController.sanitizeEmail, sanitizationController.sanitizeName],
+    sanitizationController.flashErrors('contact', 'Contact Me :)')
+  );
 
 router.route('/').get(viewsController.getRecent, viewsController.getHomepage);
 router
@@ -65,6 +85,8 @@ router
   .route('/categories/:cat')
   .get(viewsController.getRecent, tryCatch(viewsController.getPostsByCategory));
 
-router.route('/search').get(viewsController.getRecent, tryCatch(postController.searchPosts))
+router
+  .route('/search')
+  .get(viewsController.getRecent, tryCatch(postController.searchPosts));
 
 module.exports = router;

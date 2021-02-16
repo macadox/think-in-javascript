@@ -14,6 +14,7 @@ const configSchema = mongoose.Schema({
     smtpPort: Number,
     smtpUsername: String,
     smtpPassword: String,
+    emailFrom: String
   },
   passwordResetExpiry: Number,
   categories: [
@@ -32,24 +33,22 @@ const configSchema = mongoose.Schema({
 
 configSchema.pre('save', async function (next) {
   if (!this.isModified('categories')) return next();
-  
-  this.categories.forEach(category => {
+
+  this.categories.forEach((category) => {
     category.slug = slug(category.name);
-  })
+  });
 
   next();
 });
 
 configSchema.pre('save', async function (next) {
   if (!this.isModified('tags')) return next();
-  
-  this.tags.forEach(tag => {
+
+  this.tags.forEach((tag) => {
     tag.slug = slug(tag.name);
-  })
+  });
 
   next();
 });
 
-const Config = mongoose.model('Config', configSchema);
-
-module.exports = Config;
+module.exports = mongoose.model('Config', configSchema);

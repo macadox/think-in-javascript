@@ -7,10 +7,10 @@ block content
         .form-wrap
             +loginForm('Login to your account')
         .form-wrap
-            form.form(action="/login" method="POST")
+            form.form(action="/forgot" method="POST")
                 h2.form__title Forgot password?
                 .form__field
-                    label.form__label(for="email") Email Address
-                    input.form__input(type="email" id="email" name="email" required)
+                    label.form__label(for="username") Email Address
+                    input.form__input(type="email" id="username" name="username" required)
                 .form__field
                     input.form__submit(type="submit" value="Send reset instructions")

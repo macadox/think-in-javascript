@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const {promisify} = require('util');
+
+const { promisify } = require('util');
+const Email = require('./../handlers/Email');
 
 const User = mongoose.model('User');
 
@@ -15,12 +17,25 @@ exports.signUpForm = (req, res) => {
   });
 };
 
-exports.signup = async (req, res, next) => {
-  const { email, name, password } = req.body;
-  const user = new User({ email, name });
-  const register = promisify(User.register).bind(User);
-  await register(user, password);
-
-  next();
+exports.passwordResetForm = (req, res) => {
+  res.render('passwordReset', {
+    title: 'Password Reset',
+    token: req.params.token,
+  });
 };
 
+exports.signup = async (req, res, next) => {
+  const { username, name, password } = req.body;
+  const user = new User({ username, name });
+  const register = promisify(User.register).bind(User);
+
+  const registerPromise = register(user, password);
+  const emailPromise = new Email({
+    name: user.name,
+    to: user.username,
+    from: `Think in JS <${process.env.EMAIL_FROM}>`,
+  }).sendWelcome();
+
+  await Promise.all([registerPromise, emailPromise]);
+  next();
+};

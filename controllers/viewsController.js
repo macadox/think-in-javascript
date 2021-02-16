@@ -13,6 +13,11 @@ exports.getHomepage = async (req, res, next) => {
   });
 };
 
+exports.getContact = (req, res, next) => {
+    res.render('contact', {title: 'Contact Me :)'})
+}
+
+
 exports.getPostBySlug = async (req, res, next) => {
   const post = await Post.findOne({ slug: req.params.slug }).populate(
     'author comments'
@@ -135,8 +140,9 @@ exports.getRecent = async (req, res, next) => {
     configPromise,
   ]);
 
-  res.locals.recentPosts = recentPosts;
-  res.locals.recentComments = recentComments;
+  res.locals.recentPosts = recentPosts || [];
+  res.locals.recentComments = recentComments || [];
   res.locals.config = config;
   next();
 };
+

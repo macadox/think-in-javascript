@@ -8,6 +8,7 @@ const morgan = require('morgan');
 // const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
+const marked = require('marked');
 
 const viewRoutes = require('./routes');
 const apiRoutes = require('./routes/apiRoutes');
@@ -49,7 +50,8 @@ app.use((req, res, next) => {
   res.locals.flashes = req.flash();
   res.locals.user = req.user || null;
   res.locals.currentPath = req.path;
-  console.log(req.path)
+  res.locals.marked = marked;
+
   next();
 });
 

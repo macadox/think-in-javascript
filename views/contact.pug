@@ -1,0 +1,19 @@
+extends base
+
+block content
+    .inner
+        .form-wrap
+            form.form(action="/contact" method="POST")
+                h2.form__title Get in Touch
+                h3.form__subtitle Please fill out the quick form and we will be in touch with lightening speed.
+                .form__field
+                    label.form__label(for="name") Name
+                    input.form__input(type="text" id="name" name="name" required)
+                .form__field
+                    label.form__label(for="username") Email Address
+                    input.form__input(type="email" id="username" name="username" required)
+                .form__field 
+                    label.form__label(for="message") Message
+                    textarea#message.form__textarea(name="message" aria-label="message" required)
+                .form__field
+                    input.form__submit(type="submit" value="Send message")

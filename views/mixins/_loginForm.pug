@@ -2,8 +2,8 @@ mixin loginForm(title)
     form.form(action="/login" method="POST")
         h2.form__title= title
         .form__field
-            label.form__label(for="email") Email Address
-            input.form__input(type="email" id="email" name="email" required)
+            label.form__label(for="username") Email Address
+            input.form__input(type="email" id="username" name="username" required)
         .form__field
             label.form__label(for="password") Password
             input.form__input(type="password" name="password" id="password" minlength=8 required)

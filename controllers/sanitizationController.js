@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
 const Config = mongoose.model('Config');
 
-exports.sanitizeEmail = body('email')
+exports.sanitizeEmail = body('username')
   .notEmpty()
   .withMessage('You must supply an email')
   .isEmail()
@@ -21,7 +21,9 @@ exports.sanitizeName = body('name')
 
 exports.sanitizePassword = body('password')
   .notEmpty()
-  .withMessage('Password cannot be empty!');
+  .withMessage('Password cannot be empty!')
+  .isLength({ min: 8 })
+  .withMessage('Password must be minimum 8 characters long!');
 
 exports.confirmPassword = body('passwordConfirm')
   .notEmpty()

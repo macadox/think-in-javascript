@@ -11,14 +11,14 @@ block content
                     label.form__label(for="name") Name
                     input.form__input(type="text" id="name" name="name" required)
                 .form__field
-                    label.form__label(for="email") Email Address
-                    input.form__input(type="email" id="email" name="email" required)
+                    label.form__label(for="username") Email Address
+                    input.form__input(type="email" id="username" name="username" required)
                 .form__field
                     label.form__label(for="password") Password
-                    input.form__input(type="password" id="password" name="password" required)
+                    input.form__input(type="password" id="password" name="password" required minlength="8")
                 .form__field
                     label.form__label(for="passwordConfirm") Confirm password
-                    input.form__input(type="password" id="passwordConfirm" name="passwordConfirm" required)
+                    input.form__input(type="password" id="passwordConfirm" name="passwordConfirm" required minlength="8")
                 .form__field
                     input.form__submit(type="submit" value="Sign up")
         .form-wrap

@@ -6,15 +6,15 @@ header
                     h1.logo-title Think in JS
                     h2.logo-subtitle Practical solutions to JavaScript problems
                 .socials
-                    a.social__button(href="#"): i.far.fa-envelope
-                    a.social__button.social__button--facebook(href="#"): i.fab.fa-facebook-f
-                    a.social__button(href="#"): i.fab.fa-instagram
+                    a.social__button(href="https://github.com/macadox/think-in-javascript"): i.fab.fa-github
+                    a.social__button(href="https://www.linkedin.com/in/maciej-okninski/"): i.fab.fa-linkedin-in
+                    a.social__button(href="mailto:okninski.mac@gmail.com"): i.far.fa-envelope
             ul.menu
                 li.menu__element(class=`${currentPath === '/' ? 'menu__element--active' : ''}`): a.menu__link(href="/") Home
                 li.menu__element: a.menu__link(href="/") About Me
                 li.menu__element(class=`${currentPath.startsWith('/tags') ? 'menu__element--active' : ''}`): a.menu__link(href="/tags") Tags
                 li.menu__element(class=`${currentPath.startsWith('/categories') ? 'menu__element--active' : ''}`): a.menu__link(href="/categories") Categories
-                li.menu__element: a.menu__link(href="/") Contact Me
+                li.menu__element(class=`${currentPath.startsWith('/contact') ? 'menu__element--active' : ''}`): a.menu__link(href="/contact") Contact Me
                 if (user)
                     if (user.permissionPower >= 15)
                         li.menu__element.menu__element--right(class=`${currentPath.startsWith('/admin') ? 'menu__element--active' : ''}`): a.menu__link(href="/admin") Admin
