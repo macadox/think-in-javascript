@@ -6,7 +6,6 @@ const postController = require('../controllers/postController');
 const sanitizationController = require('../controllers/sanitizationController');
 const authController = require('../controllers/authController');
 const { tryCatch } = require('../handlers/errorHandler');
-// const viewsController = require('./../controllers/viewsController');
 
 const router = express.Router();
 

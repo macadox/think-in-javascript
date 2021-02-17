@@ -11,8 +11,6 @@ router
   .get(tryCatch(postController.getAllPosts))
   .post(tryCatch(postController.createPost));
 
-// router.route('/search').get(tryCatch(postController.searchPosts));
-
 router
   .route('/:id')
   .get(postController.getPost)
