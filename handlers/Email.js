@@ -31,12 +31,13 @@ module.exports = class Email {
     });
   }
 
-  async send(template, subject) {
+  async send(template, subject, message) {
     // 1) prepare template
     const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
       name: this.name,
       url: this.url,
       subject,
+      message,
     });
 
     // 2) prepare options object
@@ -60,6 +61,14 @@ module.exports = class Email {
     await this.send(
       'passwordReset',
       'Think in JS | Password reset token (valid 1h)'
+    );
+  }
+
+  async sendContactMessage(message) {
+    await this.send(
+      'contact',
+      'Think in JS | New message from contact form',
+      message
     );
   }
 };

@@ -68,10 +68,10 @@ exports.forgotPassword = async (req, res, next) => {
     console.log(e);
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
-
     await user.save({ validateBeforeSave: false });
 
-    return next(new AppError('Error while sending the email', 500));
+    req.flash('error', 'Error while sending the email')
+    return res.redirect('/login')
   }
 };
 

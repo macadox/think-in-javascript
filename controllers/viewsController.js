@@ -3,6 +3,7 @@ const { AppError } = require('../handlers/errorHandler');
 const Post = mongoose.model('Post');
 const Comment = mongoose.model('Comment');
 const Config = mongoose.model('Config');
+const Email = require('./../handlers/Email');
 
 exports.getHomepage = async (req, res, next) => {
   const posts = await Post.find().sort('-created').populate('author comments');
@@ -13,10 +14,34 @@ exports.getHomepage = async (req, res, next) => {
   });
 };
 
-exports.getContact = (req, res, next) => {
-    res.render('contact', {title: 'Contact Me :)'})
+exports.getAbout = async (req, res, next) => {
+  res.render('about', {
+    title: 'About'
+  })
 }
 
+exports.getContact = (req, res, next) => {
+  res.render('contactMe', { title: 'Contact Me :)' });
+};
+
+exports.sendContactMessage = async (req, res, next) => {
+  const { name, email, message } = req.body;
+
+  try {
+    await new Email({
+      name,
+      to: process.env.EMAIL_FROM,
+      from: email,
+    }).sendContactMessage(message);
+
+    req.flash('success', 'Email has been sent. We will contact you shortly :)');
+    return res.redirect('/contact');
+  } catch (e) {
+    console.log(e);
+    req.flash('error', 'Error while sending the email');
+    return res.redirect('/contact')
+  }
+};
 
 exports.getPostBySlug = async (req, res, next) => {
   const post = await Post.findOne({ slug: req.params.slug }).populate(
@@ -145,4 +170,3 @@ exports.getRecent = async (req, res, next) => {
   res.locals.config = config;
   next();
 };
-

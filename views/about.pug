@@ -1,0 +1,35 @@
+extends base.pug
+
+include mixins/_aside
+
+
+block content
+    .inner
+        section.hero
+            .hero__content.hero__content--main(style=`background-image: url('/img/pages/hero.jpg');`)
+                .hero__layer(style=`background-color: rgba(255, 255, 255, 0.09)`)
+                .hero__text--main
+                    h2.hero__title David Wood
+                    h3.hero__subtitle
+                        | I am a 
+                        span.typewriter-word
+                        span.typewriter-cursor
+        .main-wrap
+            section.container--full
+                .about-me.block
+                    h1 Welcome to Think in JS!
+                    p Since learning is about two steps — learning concepts and making thems with the concepts — you simply have to repeat these two steps over and over again.
+                    p But there are two problems: There are so many concepts, which should you learn first? What can you make with these concepts? 
+                    p That's where this blog comes in.
+                    h2 # Journey Ahead 
+                    p Join me on an extraordinary adventure to learn JavaScript. 
+                    p Yes, learning concepts is extremely hard. The best thing about school is that always you can consult with minds that think alike on every matter. Learning programming on the web is completely different. You need a team.
+                    p This Blog is aimed to provide free and open curriculum available to everybody!
+                    h2 # The Framework 
+                    p The Idea is simple: Each and every day at 8AM CET like an atomic clock a post will appear about some Web Development topic.
+                    p We will start with Web Development Fundamentals, and slowly make our way through frameworks and whatnot.
+                    p The more the users are interacting with the posts, the more voting power they have over the next topics (think of it as of ThinkInJS governance protocol).
+                    p Eventually, after exceeding some limit, a user may be promoted to an author and add his own propositions for blog posts that will appear, thus even further increasing his voting power on the blog.
+                    h2 # About Me 
+                    p I am David Wood, and I will be your first instructor. The thing that makes me different from many, is that I learned to code only by myself - Just like you.
+                    p I am a Web Developer with 5 years of experience. I’ve had clients from solo entrepreneurs to small business owners to billionaires. I have worked with many programming languages and stacks but now, I specialize solely in Javascript and the MERN stack.

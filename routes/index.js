@@ -54,8 +54,11 @@ router
   .get(viewsController.getContact)
   .post(
     [sanitizationController.sanitizeEmail, sanitizationController.sanitizeName],
-    sanitizationController.flashErrors('contact', 'Contact Me :)')
+    sanitizationController.flashErrors('contactMe', 'Contact Me :)'),
+    viewsController.sendContactMessage
   );
+
+router.get('/about',viewsController.getRecent, viewsController.getAbout)
 
 router.route('/').get(viewsController.getRecent, viewsController.getHomepage);
 router

@@ -1079,6 +1079,23 @@ nav {
   }
 }
 
+/* About ME */
+
+.about-me h1 {
+  font-size: 2.8rem;
+  padding: 0.3em 0;
+}
+
+.about-me h2 {
+  font-size: 2.4rem;
+  padding: 0.3em 0;
+}
+
+.about-me p {
+  font-size: 1.6rem;
+  line-height: 140%;
+}
+
 /* UTILS */
 
 .num-font {
