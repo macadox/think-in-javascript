@@ -53,6 +53,7 @@
     "prettier": "^2.2.1"
   },
   "resolutions": {
-    "node-forge": "0.10.0"
+    "node-forge": "0.10.0",
+    "mquery": "3.2.3"
   }
 }
