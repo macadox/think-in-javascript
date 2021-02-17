@@ -9,7 +9,8 @@
     "start:dev": "nodemon index.js",
     "watch:js": "parcel watch ./public/js/src/index.js --out-dir ./public/js/dist --out-file bundle.js",
     "data:import": "node ./dev-data/import.js --import",
-    "data:delete": "node ./dev-data/import.js --delete"
+    "data:delete": "node ./dev-data/import.js --delete",
+    "preinstall": "npx npm-force-resolutions"
   },
   "author": "maciej okninski",
   "license": "ISC",
@@ -50,5 +51,8 @@
     "nodemon": "^2.0.6",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.2.1"
+  },
+  "resolutions": {
+    "node-forge": "0.10.0"
   }
 }
